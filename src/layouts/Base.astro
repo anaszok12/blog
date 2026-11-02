@@ -1,20 +1,30 @@
 ---
 import '../styles/global.css';
 import { SITE } from '../config';
+import SEO from '../components/SEO.astro';
 
-interface Props { title?: string; description?: string; pattern?: boolean }
+interface Props {
+  title?: string;
+  description?: string;
+  pattern?: boolean;
+  // extra SEO details, used by blog posts
+  type?: 'website' | 'article';
+  image?: string;
+  published?: Date;
+  modified?: Date;
+}
 // pattern: show the dotted background (turned off on post pages for easier reading)
-const { title, description = SITE.description, pattern = true } = Astro.props;
+const { title, description = SITE.description, pattern = true, type, image, published, modified } = Astro.props;
 const pageTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const path = Astro.url.pathname.replace(/\/$/, '');
 const nav = [
-  { href: `${base}/blog`, label: 'Blog', active: path.startsWith(`${base}/blog`) },
-  { href: `${base}/contact`, label: 'Contact', active: path === `${base}/contact` },
+  { href: `${base}/blog/`, label: 'Blog', active: path.startsWith(`${base}/blog/`) },
+  { href: `${base}/contact/`, label: 'Contact', active: path === `${base}/contact/` },
 ];
 ---
 <!doctype html>
-<html lang="en">
+<html lang={SITE.locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -22,6 +32,7 @@ const nav = [
     <meta name="theme-color" content="#18181b" />
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     <title>{pageTitle}</title>
+    <SEO title={pageTitle} description={description} type={type} image={image} published={published} modified={modified} />
   </head>
   <body class="min-h-dvh" id="top">
     {pattern && <div class="pattern" aria-hidden="true"></div>}

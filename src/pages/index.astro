@@ -29,8 +29,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     </p>
 
     <div class="mt-8 flex flex-wrap items-center gap-4">
-      <a href={`${base}/blog`} class="inline-flex items-center gap-2 rounded-lg bg-fg px-5 py-2.5 font-medium text-bg hover:bg-white">Read the blog <span aria-hidden="true">→</span></a>
-      <a href={`${base}/contact`} class="text-dim hover:text-fg">Get in touch</a>
+      <a href={`${base}/blog/`} class="inline-flex items-center gap-2 rounded-lg bg-fg px-5 py-2.5 font-medium text-bg hover:bg-white">Read the blog <span aria-hidden="true">→</span></a>
+      <a href={`${base}/contact/`} class="text-dim hover:text-fg">Get in touch</a>
     </div>
   </section>
 
@@ -39,7 +39,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     <Label n="01" text="writing" />
     <div class="mt-2 flex items-end justify-between gap-4">
       <h2 class="text-2xl font-semibold">Latest posts</h2>
-      <a href={`${base}/blog`} class="shrink-0 text-sm text-dim hover:text-fg">all posts →</a>
+      <a href={`${base}/blog/`} class="shrink-0 text-sm text-dim hover:text-fg">all posts →</a>
     </div>
     <div class="mt-6"><PostList posts={posts} /></div>
   </section>

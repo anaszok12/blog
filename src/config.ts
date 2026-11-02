@@ -8,6 +8,10 @@ export const SITE = {
   author: 'Anas Zokronain',
   email: 'anaszok.work@gmail.com',
   github: 'https://github.com/anaszok12',
+  locale: 'en-MY',              // language tag: English, Malaysia
+  ogImage: '/og.png',            // default preview image when a link is shared
+  // Paste the code from Google Search Console here (only the content="..." part)
+  googleVerification: '',
   topics: ['BIM', 'Content management', 'Structural engineering'],
   // Software shown in the "Tools I use" section
   tools: ['Revit', 'AutoCAD', 'Navisworks', 'Dynamo', 'Bluebeam', 'Revizto'],
