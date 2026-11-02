@@ -1,0 +1,6 @@
+---
+// Small mono label like "01 / writing"
+interface Props { n: string; text: string }
+const { n, text } = Astro.props;
+---
+<p class="font-mono text-sm text-accent">{n} / {text}</p>

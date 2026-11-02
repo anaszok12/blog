@@ -1,111 +1,77 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* Fonts: Fraunces for headings, Newsreader for reading text (both serif) */
-@import "@fontsource-variable/fraunces";
-@import "@fontsource-variable/newsreader";
+/* Fonts: Inter for reading, JetBrains Mono for small labels */
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
 
 @theme {
-  --font-display: "Fraunces Variable", Georgia, serif;
-  --font-serif: "Newsreader Variable", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* All site colors live here */
+  --color-bg: oklch(18% 0.003 286);        /* dark grey page */
+  --color-card: oklch(21% 0.004 286);      /* slightly lighter cards */
+  --color-line: oklch(30% 0.005 286);      /* thin borders */
+  --color-fg: oklch(96% 0 0);              /* main text */
+  --color-soft: oklch(80% 0.004 286);      /* body text */
+  --color-dim: oklch(66% 0.006 286);       /* dates, notes */
+  --color-accent: oklch(87% 0.2 128);      /* lime */
 }
 
-/* Colors in one place */
-:root {
-  color-scheme: dark;
-  --bg: #1c1c1e;          /* dark grey page background */
-  --text: #e8e6e3;        /* soft off white, easier on the eyes than pure white */
-  --muted: #a1a1aa;
-  --accent: #9ec5ff;
-  --glass: rgba(255, 255, 255, 0.06);
-  --glass-strong: rgba(40, 40, 44, 0.55);
-  --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-shine: rgba(255, 255, 255, 0.18);
-}
-
-html {
-  background: var(--bg);
-  -webkit-text-size-adjust: 100%;
-}
-
+html { background: var(--color-bg); color-scheme: dark; -webkit-text-size-adjust: 100%; }
 body {
-  /* no background here, so the glow layer behind shows through */
-  color: var(--text);
-  font-family: var(--font-serif);
-  font-size: 1.1875rem;   /* 19px: comfortable on phones */
+  color: var(--color-soft);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;  /* 17px, comfortable on phones */
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+}
+h1, h2, h3 { color: var(--color-fg); letter-spacing: -0.02em; line-height: 1.15; }
+::selection { background: oklch(87% 0.2 128 / 0.3); }
+
+/* Faint dot grid with a few lime plus marks, fading out toward the middle */
+.pattern {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image:
+    radial-gradient(circle, oklch(87% 0.2 128 / 0.35) 1.2px, transparent 1.8px),
+    radial-gradient(circle, oklch(70% 0 0 / 0.18) 1px, transparent 1.5px);
+  background-size: 96px 96px, 16px 16px;
+  background-position: 8px 8px, 0 0;
+  -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 40%, transparent 35%, #000 100%);
+  mask-image: radial-gradient(ellipse 60% 55% at 50% 40%, transparent 35%, #000 100%);
 }
 
-h1, h2, h3, h4 {
-  font-family: var(--font-display);
-  font-optical-sizing: auto;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
+/* Underlined links like the reference: text stays white, lime underline */
+.ul {
+  color: var(--color-fg);
+  text-decoration: underline;
+  text-decoration-color: oklch(87% 0.2 128 / 0.5);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
 }
+.ul:hover { text-decoration-color: var(--color-accent); }
 
-/* Soft colored lights behind the glass, so the blur has something to bend */
-.backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
-}
-.backdrop span {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(80px);
-  opacity: 0.35;
-}
-.backdrop span:nth-child(1) { width: 60vmax; height: 60vmax; top: -25vmax; left: -20vmax; background: #3b5b8c; }
-.backdrop span:nth-child(2) { width: 50vmax; height: 50vmax; bottom: -25vmax; right: -20vmax; background: #5b3b6e; }
-.backdrop span:nth-child(3) { width: 30vmax; height: 30vmax; top: 40%; left: 55%; background: #2f6b62; opacity: 0.2; }
-
-/* Liquid glass panel */
-.glass {
-  background: linear-gradient(135deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
-  border: 1px solid var(--glass-border);
-  box-shadow:
-    inset 0 1px 0 var(--glass-shine),      /* top edge highlight */
-    inset 0 -1px 0 rgba(0,0,0,0.25),
-    0 10px 30px rgba(0,0,0,0.35);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  backdrop-filter: blur(20px) saturate(160%);
-}
-.glass-nav {
-  background: var(--glass-strong);
-}
-
-/* Fallback for browsers without blur support */
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .glass { background: #2a2a2e; }
-}
-
-a { color: inherit; }
-::selection { background: rgba(158, 197, 255, 0.3); }
-
-/* Article reading styles */
+/* Post text */
 .prose {
-  --tw-prose-body: var(--text);
-  --tw-prose-headings: #f5f3f0;
-  --tw-prose-links: var(--accent);
-  --tw-prose-bold: #f5f3f0;
-  --tw-prose-quotes: var(--text);
-  --tw-prose-quote-borders: var(--glass-border);
-  --tw-prose-code: #f5f3f0;
-  --tw-prose-pre-bg: rgba(0,0,0,0.35);
-  --tw-prose-hr: var(--glass-border);
-  --tw-prose-bullets: var(--muted);
-  --tw-prose-counters: var(--muted);
-  font-size: 1.1875rem;
+  --tw-prose-body: var(--color-soft);
+  --tw-prose-headings: var(--color-fg);
+  --tw-prose-links: var(--color-fg);
+  --tw-prose-bold: var(--color-fg);
+  --tw-prose-quotes: var(--color-soft);
+  --tw-prose-quote-borders: var(--color-accent);
+  --tw-prose-code: var(--color-fg);
+  --tw-prose-pre-bg: var(--color-card);
+  --tw-prose-hr: var(--color-line);
+  --tw-prose-bullets: var(--color-accent);
+  --tw-prose-counters: var(--color-dim);
+  --tw-prose-th-borders: var(--color-line);
+  --tw-prose-td-borders: var(--color-line);
+  font-size: 1.0625rem;
   line-height: 1.75;
 }
-.prose img { border-radius: 1rem; }
-.prose pre { border: 1px solid var(--glass-border); border-radius: 0.75rem; }
-
-@media (prefers-reduced-motion: no-preference) {
-  .lift { transition: transform .2s ease, border-color .2s ease; }
-  .lift:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.22); }
-}
+.prose a { text-decoration-color: oklch(87% 0.2 128 / 0.5); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.prose code { font-family: var(--font-mono); font-size: 0.9em; }
+.prose code::before, .prose code::after { content: none; }
+.prose pre { border: 1px solid var(--color-line); border-radius: 0.75rem; }
+.prose img { border-radius: 0.75rem; border: 1px solid var(--color-line); }
