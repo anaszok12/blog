@@ -21,11 +21,11 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     </div>
 
     <h1 class="mt-8 text-4xl font-bold sm:text-5xl">
-      Notes on BIM and Revit, from <span class="text-accent underline decoration-accent/50 decoration-2 underline-offset-8">real projects</span>.
+      Notes on BIM, content management and <span class="text-accent underline decoration-accent/50 decoration-2 underline-offset-8">structural engineering</span>.
     </h1>
     <p class="mt-6 text-lg">
-      I work on precast concrete projects in the <span class="text-fg">USA</span> and <span class="text-fg">Malaysia</span>.
-      Here I write about Revit workflows, families, templates and the small automations that save hours.
+      I'm a structural and BIM engineer.
+      Here I write about <span class="text-fg">BIM</span>, <span class="text-fg">content management</span> and <span class="text-fg">structural engineering</span>.
     </p>
 
     <div class="mt-8 flex flex-wrap items-center gap-4">
@@ -57,6 +57,6 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <section class="mt-20">
     <Label n="03" text="contact" />
     <h2 class="mt-2 text-2xl font-semibold">Say hello</h2>
-    <p class="mt-3">Questions about BIM, Revit or precast? Email <a href={`mailto:${SITE.email}`} class="ul break-all">{SITE.email}</a>.</p>
+    <p class="mt-3">Questions about BIM, content management or structural engineering? Email <a href={`mailto:${SITE.email}`} class="ul break-all">{SITE.email}</a>.</p>
   </section>
 </Base>

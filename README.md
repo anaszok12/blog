@@ -1,6 +1,6 @@
 # anaszok blog
 
-Personal blog about BIM and Revit, built with [Astro](https://astro.build) and Tailwind CSS.
+Personal blog about BIM, content management and structural engineering, built with [Astro](https://astro.build) and Tailwind CSS.
 
 Live at https://anaszok12.github.io/blog/
 

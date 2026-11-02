@@ -3,10 +3,10 @@ export const SITE = {
   title: 'anaszok',
   name: 'Anas Zokronain',
   initials: 'AZ',
-  role: 'structural & BIM engineer / precast',
-  description: 'Notes on BIM and Revit from a structural and BIM engineer.',
+  role: 'structural & BIM engineer',
+  description: 'Notes on BIM, content management and structural engineering.',
   author: 'Anas Zokronain',
   email: 'anaszok.work@gmail.com',
   github: 'https://github.com/anaszok12',
-  topics: ['Revit', 'BIM management', 'Precast concrete', 'Families', 'Templates', 'Dynamo', 'C#', 'Python'],
+  topics: ['BIM', 'Content management', 'Structural engineering'],
 };
