@@ -9,4 +9,6 @@ export const SITE = {
   email: 'anaszok.work@gmail.com',
   github: 'https://github.com/anaszok12',
   topics: ['BIM', 'Content management', 'Structural engineering'],
+  // Software shown in the "Tools I use" section
+  tools: ['Revit', 'AutoCAD', 'Navisworks', 'Dynamo', 'Bluebeam', 'Revizto'],
 };
