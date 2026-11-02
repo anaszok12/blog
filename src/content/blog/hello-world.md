@@ -6,6 +6,6 @@ draft: false
 ---
 Welcome to my blog. I am a structural and BIM engineer.
 
-Here I will share notes on **BIM**, **content management** and **structural engineering**.
+Here I will share notes on **BIM and Revit**: workflows, families, project setup, and lessons learned from real projects.
 
 More posts coming soon.
