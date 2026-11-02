@@ -3,10 +3,16 @@ import Base from '../layouts/Base.astro';
 import { SITE } from '../config';
 ---
 <Base title="Contact">
-  <h1 class="mb-6 text-3xl font-bold">Contact</h1>
-  <p class="mb-4">Questions about BIM, Revit or precast? Get in touch.</p>
-  <ul class="space-y-2">
-    <li>Email: <a href={`mailto:${SITE.email}`} class="text-blue-600 hover:underline dark:text-blue-400">{SITE.email}</a></li>
-    <li>GitHub: <a href={SITE.github} class="text-blue-600 hover:underline dark:text-blue-400">{SITE.github.replace('https://', '')}</a></li>
-  </ul>
+  <h1 class="mb-6 text-4xl font-semibold text-white sm:text-5xl">Contact</h1>
+  <p class="mb-8 text-zinc-300">Questions about BIM, Revit or precast? Get in touch.</p>
+  <div class="space-y-4">
+    <a href={`mailto:${SITE.email}`} class="glass lift block rounded-3xl p-5">
+      <p class="text-sm text-zinc-400">Email</p>
+      <p class="break-all text-white">{SITE.email}</p>
+    </a>
+    <a href={SITE.github} class="glass lift block rounded-3xl p-5">
+      <p class="text-sm text-zinc-400">GitHub</p>
+      <p class="text-white">{SITE.github.replace('https://', '')}</p>
+    </a>
+  </div>
 </Base>
