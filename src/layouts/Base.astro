@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+import { SITE } from '../config';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title, description = SITE.description } = Astro.props;
+const pageTitle = title ? `${title} | ${SITE.title}` : SITE.title;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const nav = [
+  { href: `${base}/`, label: 'Home' },
+  { href: `${base}/blog`, label: 'Blog' },
+  { href: `${base}/contact`, label: 'Contact' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <title>{pageTitle}</title>
+  </head>
+  <body class="min-h-screen bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-200">
+    <div class="mx-auto flex min-h-screen max-w-3xl flex-col px-4">
+      <header class="flex flex-wrap items-center justify-between gap-4 py-6">
+        <a href={`${base}/`} class="text-xl font-bold">{SITE.title}</a>
+        <nav class="flex gap-5 text-sm">
+          {nav.map((n) => <a href={n.href} class="hover:text-blue-600 dark:hover:text-blue-400">{n.label}</a>)}
+        </nav>
+      </header>
+      <main class="flex-1 py-6">
+        <slot />
+      </main>
+      <footer class="border-t border-slate-200 py-6 text-sm text-slate-500 dark:border-slate-800">
+        © {new Date().getFullYear()} {SITE.author} ·
+        <a href={SITE.github} class="hover:underline">GitHub</a>
+      </footer>
+    </div>
+  </body>
+</html>

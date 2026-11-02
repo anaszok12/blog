@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 5);
+---
+<Base>
+  <section class="mb-12">
+    <h1 class="mb-4 text-3xl font-bold">Hi, I'm Anas.</h1>
+    <p class="text-lg">
+      I'm a structural and BIM engineer working on precast concrete projects.
+      This blog is where I write about BIM and Revit: workflows, families, project setup and lessons from real projects.
+    </p>
+  </section>
+  <h2 class="mb-6 text-2xl font-semibold">Latest posts</h2>
+  <PostList posts={posts} />
+  <p class="mt-8"><a href={`${base}/blog`} class="text-blue-600 hover:underline dark:text-blue-400">All posts →</a></p>
+</Base>
