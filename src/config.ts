@@ -11,7 +11,7 @@ export const SITE = {
   locale: 'en-MY',              // language tag: English, Malaysia
   ogImage: '/og.png',            // default preview image when a link is shared
   // Paste the code from Google Search Console here (only the content="..." part)
-  googleVerification: '',
+  googleVerification: 'wjiG_uYUonU0V1BO_BqgtnrgN_F4BO_xyxzOkoHPJV8',
   topics: ['BIM', 'Content management', 'Structural engineering'],
   // Software shown in the "Tools I use" section
   tools: ['Revit', 'AutoCAD', 'Navisworks', 'Dynamo', 'Bluebeam', 'Revizto'],
