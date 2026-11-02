@@ -21,7 +21,7 @@ const abs = (p: string) => p.startsWith('http') ? p : new URL((p.startsWith(base
 const ogImage = abs(image ?? SITE.ogImage);
 const home = new URL(base + '/', site).href;
 
-const person = { '@type': 'Person', name: SITE.author, url: home, sameAs: [SITE.github] };
+const person = { '@type': 'Person', name: SITE.author, url: home, sameAs: SITE.socials.map((s) => s.url) };
 const data = type === 'article'
   ? {
       '@context': 'https://schema.org',

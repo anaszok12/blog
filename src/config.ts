@@ -8,6 +8,12 @@ export const SITE = {
   author: 'Anas Zokronain',
   email: 'anaszok.work@gmail.com',
   github: 'https://github.com/anaszok12',
+  // Social links shown on the home page, contact page and footer
+  socials: [
+    { name: 'linkedin', label: 'LinkedIn', handle: 'in/anaszok', url: 'https://www.linkedin.com/in/anaszok/' },
+    { name: 'threads', label: 'Threads', handle: '@rkzsna', url: 'https://www.threads.com/@rkzsna' },
+    { name: 'github', label: 'GitHub', handle: 'anaszok12', url: 'https://github.com/anaszok12' },
+  ] as const,
   locale: 'en-MY',              // language tag: English, Malaysia
   ogImage: '/og.png',            // default preview image when a link is shared
   // Paste the code from Google Search Console here (only the content="..." part)

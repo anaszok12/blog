@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Label from '../components/Label.astro';
 import { SITE } from '../config';
+import Icon from '../components/Icon.astro';
 ---
 <Base title="Contact">
   <Label n="01" text="contact" />
@@ -9,8 +10,13 @@ import { SITE } from '../config';
   <p class="mt-4 text-lg">Questions about BIM, content management or structural engineering? I read every email.</p>
   <ul class="mt-10 divide-y divide-line overflow-hidden rounded-2xl border border-line bg-card/60">
     <li><a href={`mailto:${SITE.email}`} class="group flex items-center justify-between gap-4 p-5 hover:bg-white/[0.03]">
-      <span><span class="block font-mono text-xs text-dim">email</span><span class="break-all text-fg group-hover:text-accent">{SITE.email}</span></span><span class="text-dim" aria-hidden="true">→</span></a></li>
-    <li><a href={SITE.github} class="group flex items-center justify-between gap-4 p-5 hover:bg-white/[0.03]">
-      <span><span class="block font-mono text-xs text-dim">github</span><span class="text-fg group-hover:text-accent">{SITE.github.replace('https://', '')}</span></span><span class="text-dim" aria-hidden="true">→</span></a></li>
+      <span class="flex items-center gap-4"><span class="text-dim group-hover:text-accent"><Icon name="mail" /></span>
+      <span><span class="block font-mono text-xs text-dim">email</span><span class="break-all text-fg group-hover:text-accent">{SITE.email}</span></span></span><span class="text-dim" aria-hidden="true">→</span></a></li>
+    {SITE.socials.map((x) => (
+      <li><a href={x.url} rel="me noopener" target="_blank" class="group flex items-center justify-between gap-4 p-5 hover:bg-white/[0.03]">
+        <span class="flex items-center gap-4"><span class="text-dim group-hover:text-accent"><Icon name={x.name} /></span>
+        <span><span class="block font-mono text-xs text-dim">{x.label.toLowerCase()}</span><span class="text-fg group-hover:text-accent">{x.handle}</span></span></span>
+        <span class="text-dim" aria-hidden="true">→</span></a></li>
+    ))}
   </ul>
 </Base>
