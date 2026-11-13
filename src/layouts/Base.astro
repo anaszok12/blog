@@ -29,8 +29,11 @@ const nav = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#18181b" />
+    <meta name="theme-color" content="#111113" />
+    <link rel="icon" href={`${base}/favicon.ico`} sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <link rel="apple-touch-icon" href={`${base}/apple-touch-icon.png`} />
+    <link rel="manifest" href={`${base}/site.webmanifest`} />
     <title>{pageTitle}</title>
     <SEO title={pageTitle} description={description} type={type} image={image} published={published} modified={modified} />
   </head>
@@ -40,7 +43,7 @@ const nav = [
     <header class="sticky top-0 z-10 border-b border-line bg-bg/85 pt-[env(safe-area-inset-top)] backdrop-blur-md">
       <div class="mx-auto flex h-14 max-w-3xl items-center justify-between gap-4 px-5">
         <a href={`${base}/`} class="flex items-center gap-2.5 font-semibold text-fg">
-          <span class="grid size-7 place-items-center rounded-md bg-fg font-mono text-[0.7rem] font-bold text-bg">{SITE.initials}</span>
+          <img src={`${base}/favicon.svg`} alt="" width="28" height="28" class="size-7" />
           {SITE.title}
         </a>
         <nav class="flex items-center gap-1 text-[0.95rem]">

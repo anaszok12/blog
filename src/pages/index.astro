@@ -14,7 +14,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <!-- Intro -->
   <section>
     <div class="flex items-center gap-4">
-      <div class="grid size-16 shrink-0 place-items-center rounded-full border-2 border-accent/40 bg-card font-mono text-lg font-bold text-fg sm:size-20 sm:text-xl">{SITE.initials}</div>
+      <img src={`${base}/icon-192.png`} alt="anaszok logo" width="80" height="80" class="size-16 shrink-0 rounded-2xl sm:size-20" />
       <div>
         <p class="text-2xl font-semibold text-fg sm:text-3xl">{SITE.name}</p>
         <p class="font-mono text-sm text-dim">{SITE.role}</p>

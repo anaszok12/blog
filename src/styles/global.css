@@ -16,7 +16,7 @@
   --color-fg: oklch(96% 0 0);              /* main text */
   --color-soft: oklch(80% 0.004 286);      /* body text */
   --color-dim: oklch(66% 0.006 286);       /* dates, notes */
-  --color-accent: oklch(87% 0.2 128);      /* lime */
+  --color-accent: #2dd4bf;                 /* brand turquoise (see /brand) */
 }
 
 html { background: var(--color-bg); color-scheme: dark; -webkit-text-size-adjust: 100%; }
@@ -28,13 +28,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 h1, h2, h3 { color: var(--color-fg); letter-spacing: -0.02em; line-height: 1.15; }
-::selection { background: oklch(87% 0.2 128 / 0.3); }
+::selection { background: rgb(45 212 191 / 0.3); }
 
-/* Faint dot grid with a few lime plus marks, fading out toward the middle */
+/* Faint dot grid with a few turquoise dots, fading out toward the middle */
 .pattern {
   position: fixed; inset: 0; z-index: -1; pointer-events: none;
   background-image:
-    radial-gradient(circle, oklch(87% 0.2 128 / 0.35) 1.2px, transparent 1.8px),
+    radial-gradient(circle, rgb(45 212 191 / 0.35) 1.2px, transparent 1.8px),
     radial-gradient(circle, oklch(70% 0 0 / 0.18) 1px, transparent 1.5px);
   background-size: 96px 96px, 16px 16px;
   background-position: 8px 8px, 0 0;
@@ -42,11 +42,11 @@ h1, h2, h3 { color: var(--color-fg); letter-spacing: -0.02em; line-height: 1.15;
   mask-image: radial-gradient(ellipse 60% 55% at 50% 40%, transparent 35%, #000 100%);
 }
 
-/* Underlined links like the reference: text stays white, lime underline */
+/* Underlined links like the reference: text stays white, turquoise underline */
 .ul {
   color: var(--color-fg);
   text-decoration: underline;
-  text-decoration-color: oklch(87% 0.2 128 / 0.5);
+  text-decoration-color: rgb(45 212 191 / 0.5);
   text-decoration-thickness: 2px;
   text-underline-offset: 5px;
 }
@@ -70,7 +70,7 @@ h1, h2, h3 { color: var(--color-fg); letter-spacing: -0.02em; line-height: 1.15;
   font-size: 1.0625rem;
   line-height: 1.75;
 }
-.prose a { text-decoration-color: oklch(87% 0.2 128 / 0.5); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.prose a { text-decoration-color: rgb(45 212 191 / 0.5); text-decoration-thickness: 2px; text-underline-offset: 4px; }
 .prose code { font-family: var(--font-mono); font-size: 0.9em; }
 .prose code::before, .prose code::after { content: none; }
 .prose pre { border: 1px solid var(--color-line); border-radius: 0.75rem; }
