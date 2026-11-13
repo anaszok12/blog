@@ -1,0 +1,29 @@
+---
+// A row of small clickable tag chips. Each chip opens that tag's page.
+// Pass "counts" to show "Revit (4)" style numbers.
+import { tagSlug } from '../utils/posts';
+interface Props {
+  tags: { name: string; count?: number }[];
+  active?: string; // slug of the tag page we are on, highlighted
+  class?: string;
+}
+const { tags, active, class: className } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+{tags.length > 0 && (
+  <ul class:list={['flex flex-wrap gap-2', className]}>
+    {tags.map((t) => {
+      const slug = tagSlug(t.name);
+      const isActive = slug === active;
+      return (
+        <li>
+          <a href={`${base}/blog/tags/${slug}/`} aria-current={isActive ? 'page' : undefined}
+             class:list={['relative z-10 inline-block rounded-md border px-2 py-0.5 font-mono text-xs transition-colors',
+               isActive ? 'border-accent text-accent' : 'border-line bg-card text-soft hover:border-accent hover:text-accent']}>
+            #{t.name}{t.count !== undefined && <span class="text-dim"> ({t.count})</span>}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+)}

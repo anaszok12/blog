@@ -1,0 +1,16 @@
+---
+// Shows posts under month headings, like "November 2026 (3)".
+import PostList from './PostList.astro';
+import { groupByMonth, type Post } from '../utils/posts';
+interface Props { posts: Post[] }
+const groups = groupByMonth(Astro.props.posts);
+---
+{groups.map((g) => (
+  <section id={g.key} class="mt-10 first:mt-0">
+    <h2 class="mb-4 flex items-baseline gap-2 text-xl font-semibold">
+      {g.label}<span class="font-mono text-sm font-normal text-dim">({g.posts.length})</span>
+    </h2>
+    <PostList posts={g.posts} />
+  </section>
+))}
+{groups.length === 0 && <PostList posts={[]} />}

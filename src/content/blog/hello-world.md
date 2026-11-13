@@ -3,6 +3,9 @@ title: Hello World
 description: The first post on this blog.
 date: 2026-11-02
 draft: false
+tags:
+  - BIM
+  - Revit
 ---
 Welcome to my blog. I am a structural and BIM engineer.
 

@@ -1,14 +1,22 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import PostList from '../../components/PostList.astro';
+import MonthGroups from '../../components/MonthGroups.astro';
+import TagList from '../../components/TagList.astro';
 import Label from '../../components/Label.astro';
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+import { getPosts, getTags } from '../../utils/posts';
+const posts = await getPosts();
+const tags = getTags(posts);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base title="Blog">
   <Label n="01" text="blog" />
   <h1 class="mt-2 text-4xl font-bold sm:text-5xl">All posts</h1>
   <p class="mt-4 text-lg">BIM, content management and structural engineering notes, newest first.</p>
-  <div class="mt-10"><PostList posts={posts} /></div>
+  {tags.length > 0 && (
+    <div class="mt-6">
+      <TagList tags={tags} />
+      <a href={`${base}/blog/tags/`} class="mt-3 inline-block font-mono text-xs text-dim hover:text-accent">all tags →</a>
+    </div>
+  )}
+  <div class="mt-10"><MonthGroups posts={posts} /></div>
 </Base>

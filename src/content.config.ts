@@ -12,6 +12,8 @@ const blog = defineCollection({
     updated: z.coerce.date().optional(),
     draft: z.boolean().default(false),
     image: z.string().optional(),
+    // Tags like [Revit, Precast]. Optional; posts without tags get an empty list.
+    tags: z.array(z.string()).default([]),
   }),
 });
 

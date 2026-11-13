@@ -1,0 +1,25 @@
+---
+// One page per tag, for example /blog/tags/revit/
+import Base from '../../../layouts/Base.astro';
+import MonthGroups from '../../../components/MonthGroups.astro';
+import Label from '../../../components/Label.astro';
+import { getPosts, getTags, tagSlug } from '../../../utils/posts';
+
+// Astro asks: which tag pages should exist? Answer: one for every tag in use.
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return getTags(posts).map((tag) => ({
+    params: { tag: tag.slug },
+    props: { name: tag.name, posts: posts.filter((p) => p.data.tags.some((t) => tagSlug(t) === tag.slug)) },
+  }));
+}
+const { name, posts } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title={`#${name}`} description={`Blog posts tagged ${name}.`}>
+  <a href={`${base}/blog/tags/`} class="font-mono text-sm text-dim hover:text-accent">← all tags</a>
+  <div class="mt-8"><Label n="01" text="tag" /></div>
+  <h1 class="mt-2 text-4xl font-bold sm:text-5xl">#{name}</h1>
+  <p class="mt-4 text-lg">{posts.length} {posts.length === 1 ? 'post' : 'posts'}, newest first.</p>
+  <div class="mt-10"><MonthGroups posts={posts} /></div>
+</Base>
